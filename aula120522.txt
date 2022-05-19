@@ -23,3 +23,17 @@ CRUD→ Create | Read | Update | Delete
 Integrar com o banco de dados
 
 Mapeamento Relacionado
+
+Mysql - FATEC
+root - 123456
+
+
+19 / 05 / 2022
+
+Método UPDATE 
+
+try-with-resources (desde a versão 7 do java SE)
+try-with-resources: com ele eu ganho o fechamento da conexão automaticamente
+throw : avisa que vou lançar uma Expressão
+
+{} → blco de restrição de escopo

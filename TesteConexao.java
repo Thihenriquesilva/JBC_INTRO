@@ -14,9 +14,10 @@ public class TesteConexao {
         //jdbc:mysql://localhost:3306/aulaPOO?useTimezone=true&serverTimezone=UTC
         String host = "localhost";
         String port = "3306";
-        String db = "aulaPOO";
+        String db = "db_pessoas";
         String user = "root";
-        String password = "1597534862";
+        String password = "123456";
+        // String password = "1597534862";
         String stringDeConexao = String.format(
             "jdbc:mysql://%s:%s/%s?useTimezone=true&serverTimezone=UTC",host,port,db
         );
