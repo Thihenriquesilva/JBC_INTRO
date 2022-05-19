@@ -1,0 +1,25 @@
+Classpath-> incluir o  .jar na minha aplicação
+
+classes importadas
+    Connection
+    DriverManager
+Interfaces genéricas para trabalhar com o banco de dados
+
+Execessões
+Cláusulas catch or declare
+    Trate ou declare
+Tratar?:
+    try | catch
+Declarar?:
+    declarar 
+
+Execessões != erros
+
+Erros: causados pelo programador
+Execessões:
+
+
+CRUD→ Create | Read | Update | Delete
+Integrar com o banco de dados
+
+Mapeamento Relacionado
