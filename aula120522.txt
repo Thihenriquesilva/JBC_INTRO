@@ -37,3 +37,18 @@ try-with-resources: com ele eu ganho o fechamento da conexão automaticamente
 throw : avisa que vou lançar uma Expressão
 
 {} → blco de restrição de escopo
+
+
+ResultSet→ armazena a tabela do banco de dados
+    Marca a linha inicial(Curso) que fica pulando de linha em linha até não achar mais nenhuma linha(Operação booleana)
+    Cursor(Estrutura de dados)
+ResultSet.next()→pula para a proxima linha caso esta tenha conteudo(retorna true)|| case não tenha(retorna false)
+
+
+==Exercicios 
+1. Ajustar a operação de atualizar para que ela
+
+1.1 Mostre a lista de pessoas existentes, incluindo o seu código
+
+1.2 A cada variável pedida (nome, fone e e-mail) mostrar para o usuário qual é o 
+valor existente atualmente

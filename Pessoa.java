@@ -7,17 +7,19 @@ public class Pessoa {
     private String fone;
     private String email;
 
-    public Pessoa(String nome,String fone,String email) {
+    public Pessoa (String nome, String fone, String email){
+        this(0, nome, fone, email);    
+    }
+
+    public Pessoa(int codigo, String nome, String fone, String email){
+        setCodigo(codigo);
         setNome(nome);
         setFone(fone);
         setEmail(email);
     }
+
     public Pessoa(int codigo){
-        setCodigo(codigo);
-    }
-    public Pessoa(int codigo, String nome, String fone, String email) {
-        this(nome, fone, email);
-        setCodigo(codigo);
+        this(codigo, null, null, null);
     }
     public int getCodigo() {
         return codigo;
@@ -90,7 +92,7 @@ public class Pessoa {
 
     public void apagar()throws Exception{
         //1. Especificar o comando SQL(UPDATE)
-        String sql = "DELETE tb_pessoa SET  WHERE codigo = ?";
+        String sql = "DELETE tb_pessoa WHERE codigo = ?";
         //2. Abrir uma conexão com o MySql
         ConnectionFactory factory = new ConnectionFactory();
         try(Connection conexao = factory.getConnection();//;→ dentro desse try, uso o ponto e virgula para separar os comandos 
@@ -103,5 +105,42 @@ public class Pessoa {
             ps.execute();
             //6. Fechar os recursos: já está feito pelo try-with-resources
         }
+    }
+
+    //Metodo estáticado, pois não utiliza variaveis de instancia.
+    public static String listar() throws Exception{
+        String sql = "SELECT * FROM tb_pessoa";
+        String msg = "";
+        try(
+            Connection conexao = ConnectionFactory.getConnection();
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            java.sql.ResultSet rs = ps.executeQuery();        
+        ){
+            while(rs.next()){
+                int codigo = rs.getInt("codigo");
+                String nome = rs.getString("nome");
+                String fone = rs.getString("fone");
+                String email = rs.getString("email");
+                
+                msg += String.format("Codigo: %s |Nome: %s |Fone: %s |Email: %s\n", codigo, nome, fone, email);
+                System.out.printf("Codigo: %s |Nome: %s |Fone: %s |Email: %s\n", codigo, nome, fone, email);
+            }    
+            
+        }
+        return msg;
+    }
+    public static Pessoa buscarPorId(int codi) throws Exception{
+        String sql = "SELECT * FROM tb_pessoa WHERE codigo = ?";
+        try(
+            Connection conexao = ConnectionFactory.getConnection();
+            PreparedStatement ps = conexao.prepareStatement(sql);              
+        ){
+            ps.setInt(1,codi);
+            Pessoa p = new Pessoa());
+        
+            
+        }
+        return ;        
+        
     }
 }

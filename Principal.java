@@ -3,7 +3,7 @@ import static java.lang.Integer.parseInt;
 
 public class Principal {
     public static void main(String[] args) {
-        String menu = "1-Cadastrar\n2-Atualizar\n3-Apagar\n0-Sair";
+        String menu = "1-Cadastrar\n2-Atualizar\n3-Apagar\n4-Listar\n0-Sair";
         int op = 0;
         
         do{
@@ -21,22 +21,26 @@ public class Principal {
                     }
                     case 2:
                     {
-                        String nome = JOptionPane.showInputDialog("Digite o nome");
-                        String fone = JOptionPane.showInputDialog("Digite o fone");
-                        String email = JOptionPane.showInputDialog("Digite o e-mail");
-                        int codigo = parseInt(JOptionPane.showInputDialog("Digite o código"));
+                        
+                        // String nome = JOptionPane.showInputDialog("Digite o nome");
+                        int codigo = parseInt(JOptionPane.showInputDialog(Pessoa.listar() + "Digite o código"));
+                        String pessoas = Pessoa.buscarPorId(codigo);
+                        String nome = JOptionPane.showInputDialog( Pessoa.listar() + "Digite o nome", pessoas);
+                        String fone = JOptionPane.showInputDialog(Pessoa.listar() + "Digite o fone");
+                        String email = JOptionPane.showInputDialog(Pessoa.listar() + "Digite o e-mail");
                         Pessoa p = new Pessoa(codigo,nome,fone,email);
                         p.atualizar();
                         break;
                     }   
                     case 3:
                     {
-                        int codigo = parseInt(JOptionPane.showInputDialog("Digite o código"));
-                        Pessoa p = new Pessoa(codigo);
-                        p.apagar();
+                        new Pessoa(
+                            parseInt(JOptionPane.showInputDialog("Digite o código"))
+                        ).apagar();
                     }
                         break;
                     case 4:
+                        JOptionPane.showMessageDialog(null, Pessoa.listar());
                         break;
                     case 0:
                         op = 0;
