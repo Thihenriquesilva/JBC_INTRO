@@ -52,8 +52,8 @@ public class Pessoa {
         //1. Definir o comando SQL
         String sql = "INSERT INTO tb_pessoa(nome,fone,email) VALUES (?, ?, ?)";
         //2.Abrir uma conexao com o MySQl Server
-        ConnectionFactory factory = new ConnectionFactory();
-        Connection conexao = factory.getConnection();
+        // ConnectionFactory factory = new ConnectionFactory();
+        Connection conexao = ConnectionFactory.getConnection();
         //3. Preparar o comando (solicitar ao MySQL Server que compile o comando SQL previamente)
         PreparedStatement ps =conexao.prepareStatement(sql);
         //|| var ps =conexao.prepareStatement(sql);
@@ -72,8 +72,8 @@ public class Pessoa {
         //1. Especificar o comando SQL(UPDATE)
         String sql = "UPDATE tb_pessoa SET nome=?, fone = ?, email = ? WHERE codigo = ?";
         //2. Abrir uma conexão com o MySql
-        ConnectionFactory factory = new ConnectionFactory();
-        try(Connection conexao = factory.getConnection();//;→ dentro desse try, uso o ponto e virgula para separar os comandos 
+        //ConnectionFactory factory = new ConnectionFactory();
+        try(Connection conexao = ConnectionFactory.getConnection();//;→ dentro desse try, uso o ponto e virgula para separar os comandos 
             //3.Preparar o comando  
             var ps = conexao.prepareStatement(sql);){
              
@@ -94,8 +94,8 @@ public class Pessoa {
         //1. Especificar o comando SQL(UPDATE)
         String sql = "DELETE tb_pessoa WHERE codigo = ?";
         //2. Abrir uma conexão com o MySql
-        ConnectionFactory factory = new ConnectionFactory();
-        try(Connection conexao = factory.getConnection();//;→ dentro desse try, uso o ponto e virgula para separar os comandos 
+        //ConnectionFactory factory = new ConnectionFactory();
+        try(Connection conexao = ConnectionFactory.getConnection();//;→ dentro desse try, uso o ponto e virgula para separar os comandos 
             //3.Preparar o comando  
             var ps = conexao.prepareStatement(sql);){
              
@@ -107,6 +107,7 @@ public class Pessoa {
         }
     }
 
+    //Exercicio ↓↓↓↓
     //Metodo estáticado, pois não utiliza variaveis de instancia.
     public static String listar() throws Exception{
         String sql = "SELECT * FROM tb_pessoa";
@@ -123,24 +124,30 @@ public class Pessoa {
                 String email = rs.getString("email");
                 
                 msg += String.format("Codigo: %s |Nome: %s |Fone: %s |Email: %s\n", codigo, nome, fone, email);
-                System.out.printf("Codigo: %s |Nome: %s |Fone: %s |Email: %s\n", codigo, nome, fone, email);
             }    
             
         }
         return msg;
     }
+
     public static Pessoa buscarPorId(int codi) throws Exception{
         String sql = "SELECT * FROM tb_pessoa WHERE codigo = ?";
+        Pessoa p = new Pessoa(null,null,null);
         try(
             Connection conexao = ConnectionFactory.getConnection();
-            PreparedStatement ps = conexao.prepareStatement(sql);              
+            PreparedStatement ps = conexao.prepareStatement(sql);            
         ){
             ps.setInt(1,codi);
-            Pessoa p = new Pessoa());
-        
+            java.sql.ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                p.setNome(rs.getString("nome"));
+                p.setFone(rs.getString("fone"));
+                p.setEmail(rs.getString("email")); 
             
+            System.out.println("\n"+  p.getNome() + "\n"+p.getFone() +"\n" + p.getEmail());
+            }  
         }
-        return ;        
+        return p;        
         
     }
 }

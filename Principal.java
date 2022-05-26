@@ -22,12 +22,11 @@ public class Principal {
                     case 2:
                     {
                         
-                        // String nome = JOptionPane.showInputDialog("Digite o nome");
                         int codigo = parseInt(JOptionPane.showInputDialog(Pessoa.listar() + "Digite o código"));
-                        String pessoas = Pessoa.buscarPorId(codigo);
-                        String nome = JOptionPane.showInputDialog( Pessoa.listar() + "Digite o nome", pessoas);
-                        String fone = JOptionPane.showInputDialog(Pessoa.listar() + "Digite o fone");
-                        String email = JOptionPane.showInputDialog(Pessoa.listar() + "Digite o e-mail");
+                        Pessoa pessoa = Pessoa.buscarPorId(codigo);
+                        String nome = JOptionPane.showInputDialog( Pessoa.listar() + "Digite o nome", pessoa.getNome());
+                        String fone = JOptionPane.showInputDialog(Pessoa.listar() + "Digite o fone",pessoa.getFone());
+                        String email = JOptionPane.showInputDialog(Pessoa.listar() + "Digite o e-mail",pessoa.getEmail());
                         Pessoa p = new Pessoa(codigo,nome,fone,email);
                         p.atualizar();
                         break;

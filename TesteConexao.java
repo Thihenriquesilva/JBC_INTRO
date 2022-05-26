@@ -16,8 +16,8 @@ public class TesteConexao {
         String port = "3306";
         String db = "db_pessoas";
         String user = "root";
-        String password = "123456";
-        // String password = "1597534862";
+        // String password = "123456";
+        String password = "1597534862";
         String stringDeConexao = String.format(
             "jdbc:mysql://%s:%s/%s?useTimezone=true&serverTimezone=UTC",host,port,db
         );

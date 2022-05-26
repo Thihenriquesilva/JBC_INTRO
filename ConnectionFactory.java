@@ -6,8 +6,8 @@ public class ConnectionFactory {
     private static String port = "3306";
     private static String db = "db_pessoas";
     private static String user = "root";
-    //String password = "1597534862";
-    private static String password = "123456";
+    private static String password = "1597534862";
+    //private static String password = "123456";
     // private static String stringDeConexao = String.format(
     //     "jdbc:mysql://%s:%s/%s?useTimezone=true&serverTimezone=UTC",host,port,db
     // );
